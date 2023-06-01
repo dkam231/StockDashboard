@@ -1,0 +1,19 @@
+/* high-contrast.css */
+body {
+    background-color: #232606;
+    color: #e5dbdb;
+  }
+  
+  .dropdown {
+    background-color: #232606;
+    color: #e5dbdb;
+  }
+  
+  .graph {
+    border: 1px solid #fff;
+  }
+  
+  .stock-info {
+    color: #fff;
+  }
+  
