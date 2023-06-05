@@ -67,6 +67,7 @@ def update_output_2(values):
                 html.H4(info['longName']),
                 html.P('Sector: ' + info['sector']),
                 html.P('Industry: ' + info['industry']),
+                html.P('Stock Price: $' + str(info['currentPrice'])),
                 html.P('Phone: ' + info['phone']),
                 html.P('Address: ' + info['address1'] + ', ' + info['city'] + ', ' + info['zip'] + ', ' + info[
                     'country']),
