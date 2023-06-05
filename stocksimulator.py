@@ -4,12 +4,14 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.graph_objects as go
 from datetime import datetime as dt
 import pytz
+from flask import Flask
 
 tz = pytz.timezone("America/New_York")
 start = tz.localize(dt(2018, 1, 1))
 end = tz.localize(dt.today())
 
-app = Dash(__name__, external_stylesheets=['high-contrast.css'])
+server = Flask(__name__)
+app = Dash(__name__, server=server, external_stylesheets=['high-contrast.css'])
 snp500 = pd.read_csv("constituents.csv")
 symbols = snp500['Symbol'].sort_values().tolist()
 
@@ -52,6 +54,8 @@ def update_output_1(values):
     )
 
     return fig
+
+
 @app.callback(Output('stock-info', 'children'),
               [Input('dropdown', 'value')])
 def update_output_2(values):
@@ -79,5 +83,16 @@ def update_output_2(values):
 
     return stock_info
 
+
+@server.route('/')
+def index():
+    return app.index()
+
+
+@server.route('/my_dash_app')
+def serve_dash_app():
+    return app.index()
+
+
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    server.run(debug=True)
