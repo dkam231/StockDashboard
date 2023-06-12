@@ -11,7 +11,7 @@ start = tz.localize(dt(2018, 1, 1))
 end = tz.localize(dt.today())
 
 server = Flask(__name__)
-app = Dash(__name__, server=server, external_stylesheets=['high-contrast.css'])
+app = Dash(__name__, server=server, external_stylesheets=['high-contrast.css']) # type: ignore
 snp500 = pd.read_csv("constituents.csv")
 symbols = snp500['Symbol'].sort_values().tolist()
 
